@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-content>
+
+    <div class="notes-container">
+      @for (note of notes; track note.id) {
+        <app-notes [note]="note" class="note-item"></app-notes>
+      }
+    </div>
+
+  </mat-card-content>
+</mat-card>

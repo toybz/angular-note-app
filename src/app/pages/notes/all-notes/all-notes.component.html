@@ -1,0 +1,27 @@
+<app-header>
+  <mat-card>
+    <mat-card-content>
+      <div class="header-container">
+        <h2 class="header-title">Cocus Note</h2>
+        <img class="header-img" src="favicon.ico" alt="user_avatar"/>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+</app-header>
+
+
+<app-page-content>
+  <app-search-sort></app-search-sort>
+  <app-tags-container [tags]="tags"></app-tags-container>
+  <app-notes-container [notes]="notes"></app-notes-container>
+  <div class="add-note-button-container">
+
+
+    <button mat-fab color="primary" aria-label="Add Note button">
+      <mat-icon>add</mat-icon>
+    </button>
+
+  </div>
+</app-page-content>
+

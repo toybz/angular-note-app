@@ -1,0 +1,28 @@
+<mat-card>
+  <mat-card-content>
+
+    <form [formGroup]="searchSortForm">
+      <div class="search-sort-container">
+        <div class="search-input-container">
+          <mat-form-field appearance="outline" class="search-input">
+            <mat-label>Search</mat-label>
+            <input matInput formControlName="searchQuery" placeholder="E.g Note title">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
+
+
+        <mat-card>
+          <mat-card-content>
+            <mat-icon matSuffix>expand_more</mat-icon>
+          </mat-card-content>
+        </mat-card>
+
+
+      </div>
+
+
+    </form>
+
+  </mat-card-content>
+</mat-card>
