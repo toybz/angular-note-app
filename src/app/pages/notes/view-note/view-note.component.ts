@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { PageContentComponent } from '../../../components/page-content/page-content.component';
 import { TagsContainerComponent } from '../../../components/tags-container/tags-container.component';
 import { Note } from '../../../models/note';
-import { notes, tags } from '../../../../testData';
+import { tags } from '../../../../testData';
 import { Tag } from '../../../models/tag';
 import { MatCard, MatCardContent } from '@angular/material/card';
+import { NoteService } from '../../../services/note/note.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-view-note',
@@ -16,11 +18,24 @@ import { MatCard, MatCardContent } from '@angular/material/card';
     TagsContainerComponent,
     MatCard,
     MatCardContent,
+    DatePipe,
   ],
   templateUrl: './view-note.component.html',
   styleUrl: './view-note.component.scss',
 })
 export class ViewNoteComponent {
-  note: Note = notes[0];
+  noteService = inject(NoteService);
+
+  note!: Note;
+
+  @Input()
+  set id(noteId: string) {
+    if (this.noteService.getNote(noteId)) {
+      this.note = this.noteService.getNote(noteId)!;
+    } else {
+      // redirect to 404
+    }
+  }
+
   tags: Tag[] = [...tags];
 }

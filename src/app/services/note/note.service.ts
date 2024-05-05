@@ -41,4 +41,8 @@ export class NoteService {
 
     this.snackBar.open('Note added successfully', 'Close');
   }
+
+  getNote(noteId: string) {
+    return this._notes.value.find((note) => note.id === noteId);
+  }
 }
