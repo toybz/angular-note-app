@@ -12,6 +12,8 @@ import { MatFabButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { NoteService } from '../../../services/note/note.service';
 import { AsyncPipe } from '@angular/common';
+import { SortType } from '../../../models/searchSort';
+import { BehaviorSubject, combineLatest, map } from 'rxjs';
 
 @Component({
   selector: 'app-all-notes',
@@ -36,5 +38,41 @@ export class AllNotesComponent {
   private noteService = inject(NoteService);
 
   tags: Tag[] = [...tags];
-  notes = this.noteService.notes;
+  searchQuery = new BehaviorSubject('');
+  sortType = new BehaviorSubject('');
+
+  notes = combineLatest(
+    this.noteService.notes,
+    this.searchQuery,
+    this.sortType,
+  ).pipe(
+    map(([notes, searchQuery, sortType]) => {
+      let displayedNote = notes;
+      if (searchQuery) {
+        displayedNote = notes.filter((note) => {
+          return note.title.includes(searchQuery);
+        });
+      }
+      if (sortType) {
+        displayedNote = [...displayedNote].sort((a, b) => {
+          if (sortType === 'asc') {
+            return a.title > b.title ? 1 : -1;
+          } else {
+            return b.title > a.title ? 1 : -1;
+          }
+        });
+      }
+      return displayedNote;
+    }),
+  );
+
+  constructor() {}
+
+  searchNotes(event: string) {
+    this.searchQuery.next(event);
+  }
+
+  sortNotes(event: SortType) {
+    this.sortType.next(event);
+  }
 }

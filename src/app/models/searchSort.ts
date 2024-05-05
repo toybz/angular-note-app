@@ -1,5 +1,6 @@
-export interface SearchSortForm  {
-  searchQuery: string
-  sortParam: 'Date' | 'Alphabetically'
-  sortType: 'asc' | 'desc'
+export interface SearchSortForm {
+  searchQuery: string;
+  sortParam: 'Date' | 'Alphabetically';
 }
+
+export type SortType = 'asc' | 'desc';
