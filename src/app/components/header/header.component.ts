@@ -13,4 +13,8 @@ import { MatMiniFabButton } from '@angular/material/button';
 })
 export class HeaderComponent {
   @Input() showBackButton = true;
+
+  goBack() {
+    history.back();
+  }
 }

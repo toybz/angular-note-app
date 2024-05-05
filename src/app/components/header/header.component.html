@@ -3,7 +3,12 @@
     <mat-card-content>
       <div class="header-container">
         @if (showBackButton) {
-          <button mat-mini-fab color="primary" class="back-button">
+          <button
+            mat-mini-fab
+            color="primary"
+            class="back-button"
+            (click)="goBack()"
+          >
             <mat-icon class="back">arrow_back</mat-icon>
           </button>
         }
