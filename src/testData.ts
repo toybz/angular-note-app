@@ -4,7 +4,12 @@ import { Note } from './app/models/note';
 const mockNoteContent =
   'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.\n' +
   '\n';
-export const tags: Tag[] = ['test1', 'test2'];
+export const tags: Tag[] = [
+  {
+    tagName: 'Test',
+    notedId: '123',
+  },
+];
 export const notes: Note[] = [
   {
     id: '1',

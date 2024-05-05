@@ -48,6 +48,14 @@ const sharedNotes = {
 const tags = {
   [userId]: [],
 };
+
+const tags = [
+  {
+    tagName,
+    userId,
+    notedId,
+  },
+];
 ```
 
 App layout:

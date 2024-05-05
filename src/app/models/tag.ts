@@ -1,1 +1,4 @@
-export type Tag = string
+export type Tag = {
+  tagName: string;
+  notedId: string;
+};

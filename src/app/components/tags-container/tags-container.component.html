@@ -2,10 +2,8 @@
   <mat-card-content>
     <mat-chip-set aria-label="Fish selection">
       @for (tag of tags; track tag) {
-        <mat-chip>{{ tag }}</mat-chip>
+        <mat-chip>{{ tag.tagName }}</mat-chip>
       }
     </mat-chip-set>
   </mat-card-content>
 </mat-card>
-
-
