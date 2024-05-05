@@ -8,6 +8,10 @@ import { Tag } from '../../../models/tag';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { NoteService } from '../../../services/note/note.service';
 import { DatePipe } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
+import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { MatIconButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-view-note',
@@ -19,6 +23,12 @@ import { DatePipe } from '@angular/common';
     MatCard,
     MatCardContent,
     DatePipe,
+    MatIcon,
+    MatMenuTrigger,
+    MatMenu,
+    MatIconButton,
+    MatMenuItem,
+    RouterLink,
   ],
   templateUrl: './view-note.component.html',
   styleUrl: './view-note.component.scss',
@@ -38,4 +48,8 @@ export class ViewNoteComponent {
   }
 
   tags: Tag[] = [...tags];
+
+  deleteNote(noteId: string) {
+    this.noteService.deleteNote(noteId);
+  }
 }

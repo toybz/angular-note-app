@@ -4,12 +4,14 @@ import { Note, NoteForm } from '../../models/note';
 import { generateUniqueId } from '../../utils/uniqueIdGenerator';
 import { LocalStorageKeys } from '../../utils/constants';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NoteService {
   private snackBar = inject(MatSnackBar);
+  private router = inject(Router);
 
   private _notes = new BehaviorSubject<Note[]>([]);
   notes = this._notes.asObservable().pipe(
@@ -29,6 +31,10 @@ export class NoteService {
     }
   }
 
+  getNote(noteId: string) {
+    return this._notes.value.find((note) => note.id === noteId);
+  }
+
   addNote(note: NoteForm) {
     const newNote: Note = {
       id: generateUniqueId(),
@@ -42,7 +48,25 @@ export class NoteService {
     this.snackBar.open('Note added successfully', 'Close');
   }
 
-  getNote(noteId: string) {
-    return this._notes.value.find((note) => note.id === noteId);
+  editNote(noteId: string, note: NoteForm) {
+    const allNotes = this._notes.value;
+    const noteToEdit = allNotes.find((note) => note.id === noteId) as Note;
+    noteToEdit.title = note.title;
+    noteToEdit.content = note.content;
+    noteToEdit.lastModified = new Date();
+
+    this._notes.next(allNotes);
+
+    this.snackBar.open('Note updated successfully', 'Close');
+  }
+
+  deleteNote(noteId: string) {
+    const unDeletedNotes = this._notes.value.filter(
+      (note) => note.id !== noteId,
+    );
+    this._notes.next(unDeletedNotes);
+
+    this.snackBar.open('Note deleted successfully', 'Close');
+    this.router.navigateByUrl('/notes');
   }
 }

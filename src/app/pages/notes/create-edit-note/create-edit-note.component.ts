@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import {
   MatFormField,
   MatLabel,
@@ -39,6 +39,23 @@ import { NoteForm } from '../../../models/note';
 export class CreateEditNoteComponent {
   formBuilder = inject(FormBuilder);
   private noteService = inject(NoteService);
+  inEditMode = false;
+  editNoteId: string | null = null;
+
+  @Input()
+  set id(noteId: string) {
+    if (this.noteService.getNote(noteId)) {
+      this.inEditMode = true;
+      this.editNoteId = noteId;
+      const note = this.noteService.getNote(noteId)!;
+      this.noteForm.patchValue({
+        title: note.title,
+        content: note.content,
+      });
+    } else {
+      // redirect to 404
+    }
+  }
 
   noteForm = this.formBuilder.group({
     title: ['', Validators.required],
@@ -49,10 +66,14 @@ export class CreateEditNoteComponent {
 
   createNote() {
     const noteFormValue = this.noteForm.value as NoteForm;
-    this.noteService.addNote(noteFormValue);
-    this.noteForm.reset({
-      title: '',
-      content: '',
-    });
+    if (!this.inEditMode) {
+      this.noteService.addNote(noteFormValue);
+      this.noteForm.reset({
+        title: '',
+        content: '',
+      });
+    } else {
+      this.noteService.editNote(this.editNoteId!, noteFormValue);
+    }
   }
 }
