@@ -27,8 +27,6 @@ export class NoteService {
       );
       this._notes.next(savedNotes);
     }
-    //todo: remove
-    this.notes.subscribe();
   }
 
   addNote(note: NoteForm) {
