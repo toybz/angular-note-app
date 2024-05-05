@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card routerLink="{{ note.id }}">
   <mat-card-header>
     <mat-card-title>
       {{ note.title }}
@@ -9,6 +9,5 @@
     <p>
       {{ note.content }}
     </p>
-
   </mat-card-content>
 </mat-card>

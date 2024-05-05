@@ -1,0 +1,19 @@
+<app-header [showBackButton]="true">
+  <h2 class="header-title">{{ note.title }}</h2>
+</app-header>
+
+<app-page-content>
+  <div>
+    <p class="note-modified-date">Last modified: 22/11/2024</p>
+
+    <app-tags-container [tags]="tags"></app-tags-container>
+
+    <mat-card class="note-content-container">
+      <mat-card-content>
+        <p>
+          {{ note.content }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</app-page-content>
