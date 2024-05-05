@@ -1,1 +1,16 @@
-<ng-content></ng-content>
+<header>
+  <mat-card>
+    <mat-card-content>
+      <div class="header-container">
+        @if (showBackButton) {
+          <button mat-mini-fab color="primary" class="back-button">
+            <mat-icon class="back">arrow_back</mat-icon>
+          </button>
+        }
+        <div class="header-content">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</header>

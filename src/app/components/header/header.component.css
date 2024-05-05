@@ -1,0 +1,13 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: 1%;
+
+  .back-button {
+    width: 5%;
+  }
+
+  .header-content {
+    flex-grow: 1;
+  }
+}
