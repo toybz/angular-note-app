@@ -13,6 +13,8 @@ import { tags } from '../../../../testData';
 import { MatButton } from '@angular/material/button';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { MatCard, MatCardContent } from '@angular/material/card';
+import { NoteService } from '../../../services/note/note.service';
+import { NoteForm } from '../../../models/note';
 
 @Component({
   selector: 'app-create-edit-note',
@@ -36,10 +38,18 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 })
 export class CreateEditNoteComponent {
   formBuilder = inject(FormBuilder);
+  private noteService = inject(NoteService);
+
   noteForm = this.formBuilder.group({
     title: ['', Validators.required],
     content: ['', Validators.required],
     tags: [[]],
   });
   tags = [...tags];
+
+  createNote() {
+    const noteFormValue = this.noteForm.value as NoteForm;
+    this.noteService.addNote(noteFormValue);
+    this.noteForm.reset();
+  }
 }

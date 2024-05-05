@@ -3,7 +3,7 @@
 </app-header>
 
 <app-page-content>
-  <form [formGroup]="noteForm">
+  <form [formGroup]="noteForm" (submit)="createNote()">
     <mat-form-field appearance="outline" class="note-title">
       <mat-label>Title</mat-label>
       <input matInput formControlName="title" placeholder="E.g My Note " />
@@ -20,7 +20,12 @@
       ></textarea>
     </mat-form-field>
 
-    <button mat-flat-button color="primary" class="note-submit-button">
+    <button
+      mat-flat-button
+      color="primary"
+      class="note-submit-button"
+      [disabled]="noteForm.invalid"
+    >
       Save
     </button>
   </form>
