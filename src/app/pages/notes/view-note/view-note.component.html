@@ -1,7 +1,5 @@
-<app-header [showBackButton]="true">
-  <div class="header-container">
-    <h2 class="header-title">{{ note.title }}</h2>
-    <!--    <mat-icon>more_vert</mat-icon>-->
+<app-header [showBackButton]="true" [title]="note.title">
+  <div>
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>

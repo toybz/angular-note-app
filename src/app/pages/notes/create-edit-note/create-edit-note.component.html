@@ -1,6 +1,4 @@
-<app-header [showBackButton]="true">
-  <h2 class="header-title">New note</h2>
-</app-header>
+<app-header [showBackButton]="true" title="New Note"></app-header>
 
 <app-page-content>
   <form [formGroup]="noteForm" (submit)="createNote()">
