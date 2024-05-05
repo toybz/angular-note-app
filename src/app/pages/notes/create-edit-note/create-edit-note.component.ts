@@ -43,13 +43,16 @@ export class CreateEditNoteComponent {
   noteForm = this.formBuilder.group({
     title: ['', Validators.required],
     content: ['', Validators.required],
-    tags: [[]],
+    tags: [],
   });
   tags = [...tags];
 
   createNote() {
     const noteFormValue = this.noteForm.value as NoteForm;
     this.noteService.addNote(noteFormValue);
-    this.noteForm.reset();
+    this.noteForm.reset({
+      title: '',
+      content: '',
+    });
   }
 }

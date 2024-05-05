@@ -30,8 +30,6 @@ export class NoteService {
   }
 
   addNote(note: NoteForm) {
-    console.log('create clicked');
-
     const newNote: Note = {
       id: generateUniqueId(),
       title: note.title,

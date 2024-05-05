@@ -8,7 +8,7 @@
 <app-page-content>
   <app-search-sort></app-search-sort>
   <app-tags-container [tags]="tags"></app-tags-container>
-  <app-notes-container [notes]="notes"></app-notes-container>
+  <app-notes-container [notes]="(notes | async)!"></app-notes-container>
   <div class="add-note-button-container">
     <button
       mat-fab
