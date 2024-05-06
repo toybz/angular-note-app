@@ -1,16 +1,25 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {AllNotesComponent} from './all-notes.component';
+import { AllNotesComponent } from './all-notes.component';
+import { NoteService } from '../../../services/note/note.service';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { routes } from '../../../app.routes';
+import { MockServices } from '../../../../testData';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AllNotesComponent', () => {
   let component: AllNotesComponent;
   let fixture: ComponentFixture<AllNotesComponent>;
+  const noteServiceStub = MockServices.noteServiceStub;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AllNotesComponent]
-    })
-      .compileComponents();
+      imports: [AllNotesComponent, BrowserAnimationsModule],
+      providers: [
+        { provide: NoteService, useValue: noteServiceStub },
+        provideRouter(routes, withComponentInputBinding()),
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AllNotesComponent);
     component = fixture.componentInstance;
