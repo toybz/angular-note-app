@@ -1,0 +1,44 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$deep-orange-palette, 500);
+$my-accent: mat.define-palette(mat.$deep-orange-palette, A200, A100, A400);
+$my-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+@include mat.all-component-themes($my-theme);
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-mdc-card {
+  box-shadow:
+    1px 1px 1px -1px rgba(0, 0, 0, 0.2),
+    1px 1px 1px 2px rgba(0, 0, 0, 0.2),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.2) !important;
+}
+
+mat-card-header {
+  background: var(--mat-badge-background-color) !important;
+  margin-bottom: 1vh;
+}
+
+mat-card-title {
+  color: white !important;
+}
