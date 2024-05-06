@@ -6,10 +6,10 @@
     (search)="searchNotes($event)"
     (sort)="sortNotes($event)"
   ></app-search-sort>
-  <app-tags-container
-    class="bottom-vertical-spacing"
-    [tags]="tags"
-  ></app-tags-container>
+  <!--  <app-tags-container-->
+  <!--    class="bottom-vertical-spacing"-->
+  <!--    [tags]="tags"-->
+  <!--  ></app-tags-container>-->
   <app-notes-container
     class="bottom-vertical-spacing"
     [notes]="(notes | async)!"

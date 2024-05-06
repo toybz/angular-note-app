@@ -1,39 +1,12 @@
-<!--<header>-->
-<!--  <mat-card>-->
-<!--    <mat-card-content>-->
-<!--      <div class="header-container">-->
-<!--        @if (showBackButton) {-->
-<!--          <button-->
-<!--            mat-mini-fab-->
-<!--            color="primary"-->
-<!--            class="back-button"-->
-<!--            (click)="goBack()"-->
-<!--          >-->
-<!--            <mat-icon class="back">arrow_back</mat-icon>-->
-<!--          </button>-->
-<!--        }-->
-<!--        <div class="header-content">-->
-<!--          <ng-content></ng-content>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </mat-card-content>-->
-<!--  </mat-card>-->
-<!--</header>-->
-
 <header>
   <mat-toolbar color="primary">
     @if (showBackButton) {
-      <button
-        mat-icon-button
-        class="example-icon"
-        aria-label="Example icon-button with menu icon"
-        (click)="goBack()"
-      >
+      <button mat-icon-button class="" (click)="goBack()">
         <mat-icon>arrow_back</mat-icon>
       </button>
     }
     <span>{{ title }}</span>
-    <span class="example-spacer"></span>
+    <span class="spacer"></span>
 
     <!--    right menu action button-->
     <ng-content></ng-content>

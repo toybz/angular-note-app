@@ -53,7 +53,7 @@ export class CreateEditNoteComponent {
         content: note.content,
       });
     } else {
-      // redirect to 404
+      // todo redirect to 404
     }
   }
 

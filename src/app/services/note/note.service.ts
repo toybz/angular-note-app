@@ -16,7 +16,6 @@ export class NoteService {
   private _notes = new BehaviorSubject<Note[]>([]);
   notes = this._notes.asObservable().pipe(
     tap((notes) => {
-      console.log('new notes', notes);
       //save to localStorage
       localStorage.setItem(LocalStorageKeys.notes, JSON.stringify(notes));
     }),

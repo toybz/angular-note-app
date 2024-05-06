@@ -1,12 +1,10 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-page-content',
   standalone: true,
   imports: [],
   templateUrl: './page-content.component.html',
-  styleUrl: './page-content.component.scss'
+  styleUrl: './page-content.component.scss',
 })
-export class PageContentComponent {
-
-}
+export class PageContentComponent {}

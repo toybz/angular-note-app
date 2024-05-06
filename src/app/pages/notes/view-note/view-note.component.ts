@@ -35,18 +35,15 @@ import { RouterLink } from '@angular/router';
 })
 export class ViewNoteComponent {
   noteService = inject(NoteService);
-
   note!: Note;
-
   @Input()
   set id(noteId: string) {
     if (this.noteService.getNote(noteId)) {
       this.note = this.noteService.getNote(noteId)!;
     } else {
-      // redirect to 404
+      // todo: redirect to 404
     }
   }
-
   tags: Tag[] = [...tags];
 
   deleteNote(noteId: string) {
