@@ -10,13 +10,15 @@
               formControlName="searchQuery"
               placeholder="E.g Note title"
             />
-            <mat-icon matSuffix (click)="searchNote()">search</mat-icon>
+            <mat-icon color="primary" matSuffix (click)="searchNote()"
+              >search
+            </mat-icon>
           </mat-form-field>
         </div>
 
         <mat-card>
           <mat-card-content>
-            <mat-icon matSuffix (click)="sortNote()">
+            <mat-icon color="primary" matSuffix (click)="sortNote()">
               {{ sortValue === "asc" ? "expand_more" : "expand_less" }}
             </mat-icon>
           </mat-card-content>

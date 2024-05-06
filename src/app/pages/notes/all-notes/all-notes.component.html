@@ -1,14 +1,19 @@
-<app-header [showBackButton]="false">
-  <img class="header-img" src="favicon.ico" alt="user_avatar" />
-</app-header>
+<app-header [showBackButton]="false"></app-header>
 
 <app-page-content>
   <app-search-sort
+    class="bottom-vertical-spacing"
     (search)="searchNotes($event)"
     (sort)="sortNotes($event)"
   ></app-search-sort>
-  <app-tags-container [tags]="tags"></app-tags-container>
-  <app-notes-container [notes]="(notes | async)!"></app-notes-container>
+  <app-tags-container
+    class="bottom-vertical-spacing"
+    [tags]="tags"
+  ></app-tags-container>
+  <app-notes-container
+    class="bottom-vertical-spacing"
+    [notes]="(notes | async)!"
+  ></app-notes-container>
   <div class="add-note-button-container">
     <button
       mat-fab

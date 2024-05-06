@@ -1,13 +1,13 @@
 <mat-card routerLink="{{ note.id }}">
   <mat-card-header>
     <mat-card-title>
-      {{ note.title }}
+      {{ note.title | truncateText: [25] }}
     </mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
     <p>
-      {{ note.content }}
+      {{ note.content | truncateText: [150] }}
     </p>
   </mat-card-content>
 </mat-card>
