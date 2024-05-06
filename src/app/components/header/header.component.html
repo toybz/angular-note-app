@@ -1,11 +1,16 @@
 <header>
   <mat-toolbar color="primary">
     @if (showBackButton) {
-      <button mat-icon-button class="" (click)="goBack()">
+      <button
+        mat-icon-button
+        class=""
+        data-test-id="back-button"
+        (click)="goBack()"
+      >
         <mat-icon>arrow_back</mat-icon>
       </button>
     }
-    <span>{{ title }}</span>
+    <span data-test-id="title">{{ title }}</span>
     <span class="spacer"></span>
 
     <!--    right menu action button-->
