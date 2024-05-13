@@ -23,7 +23,7 @@
       {{ note.lastModified || note.dateCreated | date: "shortDate" }}
     </p>
 
-    <!--    <app-tags-container [tags]="tags"></app-tags-container>-->
+    <app-tags-container [selectedTags]="selectedTags"></app-tags-container>
 
     <mat-card class="note-content-container">
       <mat-card-content>

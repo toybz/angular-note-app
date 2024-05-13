@@ -9,7 +9,7 @@ const mockNoteContent =
 export const tags: Tag[] = [
   {
     tagName: 'Test',
-    notedId: '123',
+    tagId: '123',
   },
 ];
 export const notes: Note[] = [

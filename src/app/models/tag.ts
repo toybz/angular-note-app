@@ -1,4 +1,9 @@
-export type Tag = {
+export interface Tag {
   tagName: string;
-  notedId: string;
-};
+  tagId: string;
+}
+
+export interface NoteTag {
+  noteId: string;
+  tag: Tag;
+}

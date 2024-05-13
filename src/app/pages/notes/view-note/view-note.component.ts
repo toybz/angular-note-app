@@ -34,7 +34,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './view-note.component.scss',
 })
 export class ViewNoteComponent {
-  noteService = inject(NoteService);
+  private noteService = inject(NoteService);
   note!: Note;
   @Input()
   set id(noteId: string) {
@@ -43,6 +43,10 @@ export class ViewNoteComponent {
     } else {
       // todo: redirect to 404
     }
+  }
+
+  get selectedTags() {
+    return this.note.tags || [];
   }
   tags: Tag[] = [...tags];
 

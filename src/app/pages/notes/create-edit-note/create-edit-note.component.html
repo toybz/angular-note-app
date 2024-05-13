@@ -1,13 +1,17 @@
 <app-header [showBackButton]="true" title="New Note"></app-header>
 
 <app-page-content>
-  <form [formGroup]="noteForm" (submit)="createNote()">
+  <form [formGroup]="noteForm">
     <mat-form-field appearance="outline" class="note-title">
       <mat-label>Title</mat-label>
       <input matInput formControlName="title" placeholder="E.g My Note " />
     </mat-form-field>
 
-    <!--    <app-tags-container [tags]="tags" [editMode]="true"></app-tags-container>-->
+    <app-tags-container
+      [editMode]="true"
+      (onTagsSelectionChange)="tagsSelectionChangeHandler($event)"
+      [selectedTags]="selectedTags"
+    ></app-tags-container>
 
     <mat-form-field appearance="outline" class="note-content">
       <mat-label>Content</mat-label>
@@ -23,6 +27,7 @@
       color="primary"
       class="note-submit-button"
       [disabled]="noteForm.invalid"
+      (click)="createNote()"
     >
       Save
     </button>

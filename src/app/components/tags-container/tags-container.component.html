@@ -1,9 +1,49 @@
 <mat-card>
-  <mat-card-content>
+  <mat-card-content class="tags-container">
     <mat-chip-set>
-      @for (tag of tags; track tag) {
-        <mat-chip>{{ tag.tagName }}</mat-chip>
+      @for (tag of allTags(); track tag) {
+        <mat-chip
+          [highlighted]="isTagSelected(tag.tagId)"
+          (click)="toggleSelectedTag(tag.tagId)"
+          >{{ tag.tagName }}
+        </mat-chip>
       }
     </mat-chip-set>
+
+    @if (editMode) {
+      <div class="button-container">
+        <button
+          mat-mini-fab
+          color="primary"
+          aria-label="add tag icon"
+          (click)="toggleShowAddTagContainer()"
+        >
+          <mat-icon>
+            {{ showAddTagContainer ? "remove" : "plus_one" }}
+          </mat-icon>
+        </button>
+      </div>
+
+      @if (showAddTagContainer) {
+        <form class="new-tag-container" [formGroup]="newTagForm">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="enter tag name"
+              formControlName="tagName"
+            />
+          </mat-form-field>
+
+          <button
+            mat-flat-button
+            color="primary"
+            [disabled]="newTagForm.invalid"
+            (click)="addTag()"
+          >
+            Add
+          </button>
+        </form>
+      }
+    }
   </mat-card-content>
 </mat-card>

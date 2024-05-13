@@ -6,7 +6,12 @@ import {
 } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { PageContentComponent } from '../../../components/page-content/page-content.component';
 import { TagsContainerComponent } from '../../../components/tags-container/tags-container.component';
 import { tags } from '../../../../testData';
@@ -37,7 +42,7 @@ import { NoteForm } from '../../../models/note';
   styleUrl: './create-edit-note.component.scss',
 })
 export class CreateEditNoteComponent {
-  formBuilder = inject(FormBuilder);
+  private formBuilder = inject(FormBuilder);
   private noteService = inject(NoteService);
   inEditMode = false;
   editNoteId: string | null = null;
@@ -60,9 +65,13 @@ export class CreateEditNoteComponent {
   noteForm = this.formBuilder.group({
     title: ['', Validators.required],
     content: ['', Validators.required],
-    tags: [],
+    tags: new FormControl<string[]>([]),
   });
   tags = [...tags];
+
+  get selectedTags() {
+    return this.noteForm.value.tags || [];
+  }
 
   createNote() {
     const noteFormValue = this.noteForm.value as NoteForm;
@@ -71,9 +80,16 @@ export class CreateEditNoteComponent {
       this.noteForm.reset({
         title: '',
         content: '',
+        tags: [],
       });
     } else {
       this.noteService.editNote(this.editNoteId!, noteFormValue);
     }
+  }
+
+  tagsSelectionChangeHandler(event: string[]) {
+    this.noteForm.patchValue({
+      tags: event,
+    });
   }
 }

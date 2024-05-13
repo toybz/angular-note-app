@@ -40,6 +40,7 @@ export class NoteService {
       title: note.title,
       content: note.content,
       dateCreated: new Date(),
+      tags: note.tags,
     };
     const existingNotes = this._notes.value;
     this._notes.next([...existingNotes, newNote]);
@@ -53,6 +54,7 @@ export class NoteService {
     noteToEdit.title = note.title;
     noteToEdit.content = note.content;
     noteToEdit.lastModified = new Date();
+    noteToEdit.tags = note.tags;
 
     this._notes.next(allNotes);
 
