@@ -1,0 +1,46 @@
+<app-page-content>
+  <div class="auth-container">
+    <mat-card class="auth-card">
+      <mat-card-content>
+        <form [formGroup]="signUpForm" class="auth-form">
+          <mat-form-field appearance="outline" class="auth-title">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" placeholder="" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="auth-title">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              formControlName="password"
+              placeholder=""
+              type="password"
+            />
+          </mat-form-field>
+
+          @if (authType === "sign-up") {
+            <button mat-button color="primary" (click)="signUp()">
+              Sign Up
+            </button>
+          }
+          @if (authType === "login") {
+            <button mat-button color="primary" (click)="login()">Login</button>
+          }
+        </form>
+
+        <div class="auth-login-link">
+          <p>
+            <span>Or </span>
+
+            @if (authType === "sign-up") {
+              <a routerLink="/auth/login">Login</a>
+            }
+            @if (authType === "login") {
+              <a routerLink="/auth/sign-up">Sign up</a>
+            }
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</app-page-content>

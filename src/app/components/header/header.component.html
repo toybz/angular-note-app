@@ -13,6 +13,27 @@
     <span data-test-id="title">{{ title }}</span>
     <span class="spacer"></span>
 
+    @if (isUserLoggedIn()) {
+      <button
+        mat-fab
+        color="accent"
+        aria-label="user menu icon"
+        [matMenuTriggerFor]="menu"
+      >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logOut()">
+          <mat-icon>person_off</mat-icon>
+          <span>Logout</span>
+        </button>
+
+        <!--      <button mat-menu-item>-->
+        <!--        <mat-icon>notifications_off</mat-icon>-->
+        <!--        <span>Disable alerts</span>-->
+        <!--      </button>-->
+      </mat-menu>
+    }
     <!--    right menu action button-->
     <ng-content></ng-content>
   </mat-toolbar>
