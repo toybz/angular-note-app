@@ -67,6 +67,7 @@ export class CreateEditNoteComponent {
     content: ['', Validators.required],
     tags: new FormControl<string[]>([]),
   });
+
   tags = [...tags];
 
   get selectedTags() {
