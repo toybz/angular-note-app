@@ -1,15 +1,15 @@
 import { Route } from '@angular/router';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { AuthComponent } from './auth/auth.component';
 
 export const AuthRoutes: Route[] = [
   {
     path: 'login',
-    component: SignUpComponent,
+    component: AuthComponent,
     data: { authenticationType: 'login' },
   },
   {
     path: 'sign-up',
-    component: SignUpComponent,
+    component: AuthComponent,
     data: { authenticationType: 'sign-up' },
   },
   {

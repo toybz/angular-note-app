@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { SignUpComponent } from './sign-up.component';
 import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
 import { provideRouter, Router } from '@angular/router';
@@ -7,9 +6,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserT } from '../../../models/user';
 import { RouterTestingHarness } from '@angular/router/testing';
+import { AuthComponent } from './auth.component';
 
-describe('SignUpComponent', () => {
-  let component: SignUpComponent;
+describe('AuthComponent', () => {
+  let component: AuthComponent;
   let harness: RouterTestingHarness;
   let fixture: HTMLElement;
 
@@ -24,13 +24,12 @@ describe('SignUpComponent', () => {
       'isUserExist',
     ]);
     let snackBarSpy = jasmine.createSpyObj('MatSnackBar', ['open']);
-    let destroyRefSpy = jasmine.createSpyObj('DestroyRef', ['']);
 
     await TestBed.configureTestingModule({
-      imports: [SignUpComponent, BrowserAnimationsModule],
+      imports: [AuthComponent, BrowserAnimationsModule],
       providers: [
         FormBuilder,
-        provideRouter([{ path: '**', component: SignUpComponent }]),
+        provideRouter([{ path: '**', component: AuthComponent }]),
         { provide: AuthService, useValue: authServiceSpy },
         { provide: MatSnackBar, useValue: snackBarSpy },
       ],
@@ -41,7 +40,7 @@ describe('SignUpComponent', () => {
     snackBar = TestBed.inject(MatSnackBar) as jasmine.SpyObj<MatSnackBar>;
 
     harness = await RouterTestingHarness.create();
-    component = await harness.navigateByUrl('/', SignUpComponent);
+    component = await harness.navigateByUrl('/', AuthComponent);
     fixture = harness.routeNativeElement!;
     harness.detectChanges();
   });

@@ -11,7 +11,7 @@ import { UserT } from '../../../models/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-sign-up',
+  selector: 'app-auth',
   standalone: true,
   imports: [
     MatFormField,
@@ -24,10 +24,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatButton,
     RouterLink,
   ],
-  templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.scss',
+  templateUrl: './auth.component.html',
+  styleUrl: './auth.component.scss',
 })
-export class SignUpComponent {
+export class AuthComponent {
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
