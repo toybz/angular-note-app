@@ -19,12 +19,24 @@
           </mat-form-field>
 
           @if (authType === "sign-up") {
-            <button mat-button color="primary" (click)="signUp()">
+            <button
+              mat-button
+              color="primary"
+              (click)="signUp()"
+              data-test-id="form-submit-button"
+            >
               Sign Up
             </button>
           }
           @if (authType === "login") {
-            <button mat-button color="primary" (click)="login()">Login</button>
+            <button
+              mat-button
+              color="primary"
+              (click)="login()"
+              data-test-id="form-submit-button"
+            >
+              Login
+            </button>
           }
         </form>
 
@@ -33,10 +45,10 @@
             <span>Or </span>
 
             @if (authType === "sign-up") {
-              <a routerLink="/auth/login">Login</a>
+              <a routerLink="/auth/login" data-test-id="form-link">Login</a>
             }
             @if (authType === "login") {
-              <a routerLink="/auth/sign-up">Sign up</a>
+              <a routerLink="/auth/sign-up" data-test-id="form-link">Sign up</a>
             }
           </p>
         </div>

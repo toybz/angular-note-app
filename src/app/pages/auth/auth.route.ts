@@ -5,12 +5,12 @@ export const AuthRoutes: Route[] = [
   {
     path: 'login',
     component: SignUpComponent,
-    data: { authType: 'login' },
+    data: { authenticationType: 'login' },
   },
   {
     path: 'sign-up',
     component: SignUpComponent,
-    data: { authType: 'sign-up' },
+    data: { authenticationType: 'sign-up' },
   },
   {
     path: '',

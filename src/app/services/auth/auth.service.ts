@@ -16,7 +16,6 @@ export class AuthService {
 
   signUpNewUser(user: UserT) {
     this.storageService.addData('users', user);
-    const users = this.storageService.getData('users');
   }
 
   isUserExist(user: UserT) {

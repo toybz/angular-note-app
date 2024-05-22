@@ -1,15 +1,14 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { PageContentComponent } from '../../../components/page-content/page-content.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatButton } from '@angular/material/button';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
 import { UserT } from '../../../models/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-sign-up',
@@ -33,18 +32,14 @@ export class SignUpComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
-  private activatedRoute = inject(ActivatedRoute);
-  private destroyRef = inject(DestroyRef);
 
   authType: string | undefined;
 
-  constructor() {
-    this.activatedRoute.data
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((data) => {
-        this.authType = data['authType'];
-      });
+  @Input() set authenticationType(authType: string) {
+    this.authType = authType;
   }
+
+  constructor() {}
 
   signUpForm = this.formBuilder.group({
     username: ['', Validators.required],
