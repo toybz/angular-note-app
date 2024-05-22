@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { NoteService } from './note.service';
 import { BehaviorSubject, skip } from 'rxjs';
 import { Note } from '../../models/note';
-import { notes } from '../../../testData';
+import { notes } from '../../test-assets/testData';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('NoteService', () => {

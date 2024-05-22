@@ -3,7 +3,7 @@ import { HeaderComponent } from '../../../components/header/header.component';
 import { PageContentComponent } from '../../../components/page-content/page-content.component';
 import { TagsContainerComponent } from '../../../components/tags-container/tags-container.component';
 import { Note } from '../../../models/note';
-import { tags } from '../../../../testData';
+import { tags } from '../../../test-assets/testData';
 import { Tag } from '../../../models/tag';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { NoteService } from '../../../services/note/note.service';

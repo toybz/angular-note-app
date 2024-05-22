@@ -4,7 +4,7 @@ import { ViewNoteComponent } from './view-note.component';
 import { NoteService } from '../../../services/note/note.service';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { routes } from '../../../app.routes';
-import { MockServices } from '../../../../testData';
+import { MockServices } from '../../../test-assets/testData';
 
 describe('ViewNoteComponent', () => {
   let component: ViewNoteComponent;

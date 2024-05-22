@@ -6,7 +6,7 @@ import { SearchSortComponent } from '../../../components/search-sort/search-sort
 import { TagsContainerComponent } from '../../../components/tags-container/tags-container.component';
 import { NotesContainerComponent } from '../../../components/notes-container/notes-container.component';
 import { Tag } from '../../../models/tag';
-import { tags } from '../../../../testData';
+import { tags } from '../../../test-assets/testData';
 import { MatIcon } from '@angular/material/icon';
 import { MatFabButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';

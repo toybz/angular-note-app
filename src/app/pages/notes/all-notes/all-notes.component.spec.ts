@@ -4,7 +4,7 @@ import { AllNotesComponent } from './all-notes.component';
 import { NoteService } from '../../../services/note/note.service';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { routes } from '../../../app.routes';
-import { MockServices } from '../../../../testData';
+import { MockServices } from '../../../test-assets/testData';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AllNotesComponent', () => {

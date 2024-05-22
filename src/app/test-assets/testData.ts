@@ -1,7 +1,13 @@
-import { Tag } from './app/models/tag';
-import { Note } from './app/models/note';
+import { Tag } from '../models/tag';
+import { Note } from '../models/note';
 import { Observable } from 'rxjs';
-import { NoteService } from './app/services/note/note.service';
+import { NoteService } from '../services/note/note.service';
+import { UserT } from '../models/user';
+
+export const testUser: UserT = {
+  username: 'testUser',
+  password: 'testPassword',
+};
 
 const mockNoteContent =
   'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.\n' +

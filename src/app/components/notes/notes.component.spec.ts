@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NotesComponent } from './notes.component';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { routes } from '../../app.routes';
-import { notes } from '../../../testData';
+import { notes } from '../../test-assets/testData';
 
 describe('NotesComponent', () => {
   let component: NotesComponent;

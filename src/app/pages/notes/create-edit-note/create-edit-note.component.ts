@@ -14,7 +14,7 @@ import {
 } from '@angular/forms';
 import { PageContentComponent } from '../../../components/page-content/page-content.component';
 import { TagsContainerComponent } from '../../../components/tags-container/tags-container.component';
-import { tags } from '../../../../testData';
+import { tags } from '../../../test-assets/testData';
 import { MatButton } from '@angular/material/button';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { MatCard, MatCardContent } from '@angular/material/card';
