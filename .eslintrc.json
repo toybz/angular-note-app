@@ -1,0 +1,84 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@typescript-eslint/member-ordering": [
+          "error",
+          {
+            "default": [
+              "signature",
+              "private-static-field",
+              "protected-static-field",
+              "public-static-field",
+              "private-instance-field",
+              "protected-instance-field",
+              "public-instance-field",
+              "private-decorated-field",
+              "protected-decorated-field",
+              "public-decorated-field",
+              "private-constructor",
+              "protected-constructor",
+              "public-constructor",
+              "private-static-method",
+              "protected-static-method",
+              "public-static-method",
+              "private-decorated-method",
+              "protected-decorated-method",
+              "public-decorated-method",
+              "private-instance-method",
+              "protected-instance-method",
+              "public-instance-method",
+              "protected-abstract-field",
+              "public-abstract-field",
+              "protected-abstract-method",
+              "public-abstract-method"
+            ]
+          }
+        ],
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "accessibility": "explicit",
+            "overrides": {
+              "accessors": "explicit",
+              "constructors": "no-public",
+              "methods": "explicit",
+              "properties": "explicit",
+              "parameterProperties": "explicit"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    }
+  ]
+}
