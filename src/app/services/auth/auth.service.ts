@@ -2,6 +2,7 @@ import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { StorageService } from '../storage/storage.service';
 import { UserT } from '../../models/user';
 import { Router } from '@angular/router';
+import { generateUniqueId } from '../../utils/uniqueIdGenerator';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,11 @@ export class AuthService {
   constructor() {}
 
   public signUpNewUser(user: UserT) {
-    this.storageService.addData('users', user as never);
+    const newUser: UserT = {
+      ...user,
+      id: generateUniqueId(),
+    };
+    this.storageService.addData('users', newUser);
   }
 
   public isUserExist(user: UserT) {

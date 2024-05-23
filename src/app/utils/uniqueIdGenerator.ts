@@ -1,3 +1,3 @@
 export function generateUniqueId(): string {
-  return new Date().getMilliseconds().toString();
+  return new Date().getTime().toString();
 }

@@ -22,7 +22,7 @@ describe('ViewNoteComponent', () => {
 
     fixture = TestBed.createComponent(ViewNoteComponent);
     component = fixture.componentInstance;
-    component.id = '2';
+    component['id'] = '2';
     fixture.detectChanges();
   });
 

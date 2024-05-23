@@ -85,7 +85,7 @@ describe('AuthComponent', () => {
 
   describe('#signUp', () => {
     it('should perform signup operations', () => {
-      const newUser: UserT = {
+      const newUser: Omit<UserT, 'id'> = {
         username: 'username',
         password: 'password',
       };
