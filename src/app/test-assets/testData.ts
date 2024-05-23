@@ -5,6 +5,7 @@ import { NoteService } from '../services/note/note.service';
 import { UserT } from '../models/user';
 
 export const testUser: UserT = {
+  id: '1',
   username: 'testUser',
   password: 'testPassword',
 };

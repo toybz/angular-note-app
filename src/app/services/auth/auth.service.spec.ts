@@ -44,11 +44,17 @@ describe('AuthService', () => {
   describe('#signUpNewUser', () => {
     it('should add data to storage', () => {
       const user: UserT = signedInUser;
-      // storageService.addData.and.returnValue(undefined);
 
       service.signUpNewUser(user);
+
       expect(storageService.addData.calls.count()).toBe(1);
-      expect(storageService.addData).toHaveBeenCalledWith('users', user);
+      expect(storageService.addData).toHaveBeenCalledWith(
+        'users',
+        jasmine.objectContaining({
+          username: user.username,
+          password: user.password,
+        }),
+      );
     });
   });
 
@@ -56,7 +62,11 @@ describe('AuthService', () => {
     it('should return null if user doesnt exist', () => {
       const mockUsers: UserT[] = [signedInUser];
       storageService.getData.and.returnValue(mockUsers);
-      const unExistingUser: UserT = { username: 'mock', password: 'mock' };
+      const unExistingUser: UserT = {
+        id: '2',
+        username: 'mock',
+        password: 'mock',
+      };
       expect(service.isUserExist(unExistingUser)).toBe(null);
     });
     it('should return user detail if user exist', () => {
