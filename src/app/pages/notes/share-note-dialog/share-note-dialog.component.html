@@ -1,0 +1,22 @@
+<div class="share-note-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Share note</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>note id {{ data.noteId }}</p>
+      <mat-list>
+        @for (user of users; track user.username) {
+          <mat-list-item>
+            <p>
+              <span>
+                {{ user.username }}
+              </span>
+              <mat-slide-toggle></mat-slide-toggle>
+            </p>
+          </mat-list-item>
+        }
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

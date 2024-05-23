@@ -12,6 +12,8 @@ import { MatIcon } from '@angular/material/icon';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatIconButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ShareNoteDialogComponent } from '../share-note-dialog/share-note-dialog.component';
 
 @Component({
   selector: 'app-view-note',
@@ -35,6 +37,7 @@ import { RouterLink } from '@angular/router';
 })
 export class ViewNoteComponent {
   private noteService = inject(NoteService);
+  private matDialog = inject(MatDialog);
   public note!: Note;
 
   @Input()
@@ -54,5 +57,13 @@ export class ViewNoteComponent {
 
   public deleteNote(noteId: string) {
     this.noteService.deleteNote(noteId);
+  }
+
+  public openShareDialog() {
+    this.matDialog.open(ShareNoteDialogComponent, {
+      data: {
+        noteId: this.note.id,
+      },
+    });
   }
 }

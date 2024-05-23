@@ -15,7 +15,7 @@ export class AuthService {
   constructor() {}
 
   public signUpNewUser(user: UserT) {
-    this.storageService.addData('users', user);
+    this.storageService.addData('users', user as never);
   }
 
   public isUserExist(user: UserT) {

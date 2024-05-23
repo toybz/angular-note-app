@@ -8,6 +8,10 @@
         <mat-icon>edit</mat-icon>
         <span>Edit</span>
       </button>
+      <button mat-menu-item (click)="openShareDialog()">
+        <mat-icon>share</mat-icon>
+        <span>Share</span>
+      </button>
       <button mat-menu-item (click)="deleteNote(note.id)">
         <mat-icon>delete</mat-icon>
         <span>Delete</span>
