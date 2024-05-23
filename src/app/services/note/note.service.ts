@@ -14,7 +14,7 @@ export class NoteService {
   private router = inject(Router);
 
   private _notes = new BehaviorSubject<Note[]>([]);
-  notes = this._notes.asObservable().pipe(
+  public notes = this._notes.asObservable().pipe(
     tap((notes) => {
       //save to localStorage
       localStorage.setItem(LocalStorageKeys.notes, JSON.stringify(notes));
@@ -30,11 +30,11 @@ export class NoteService {
     }
   }
 
-  getNote(noteId: string) {
+  public getNote(noteId: string) {
     return this._notes.value.find((note) => note.id === noteId);
   }
 
-  addNote(note: NoteForm) {
+  public addNote(note: NoteForm) {
     const newNote: Note = {
       id: generateUniqueId(),
       title: note.title,
@@ -48,7 +48,7 @@ export class NoteService {
     this.snackBar.open('Note added successfully', 'Close');
   }
 
-  editNote(noteId: string, note: NoteForm) {
+  public editNote(noteId: string, note: NoteForm) {
     const allNotes = this._notes.value;
     const noteToEdit = allNotes.find((note) => note.id === noteId) as Note;
     noteToEdit.title = note.title;
@@ -61,7 +61,7 @@ export class NoteService {
     this.snackBar.open('Note updated successfully', 'Close');
   }
 
-  deleteNote(noteId: string) {
+  public deleteNote(noteId: string) {
     const unDeletedNotes = this._notes.value.filter(
       (note) => note.id !== noteId,
     );

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageKeys } from '../../utils/constants';
 import { LocalStorageKeysT } from '../../models/local-storage.model';
+import { UserT } from '../../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { LocalStorageKeysT } from '../../models/local-storage.model';
 export class StorageService {
   constructor() {}
 
-  getData(tableName: LocalStorageKeysT) {
+  public getData(tableName: LocalStorageKeysT) {
     const localData = localStorage.getItem(LocalStorageKeys[tableName]);
     if (!localData) {
       return {};
@@ -16,7 +17,7 @@ export class StorageService {
     return JSON.parse(localData);
   }
 
-  addData(tableName: LocalStorageKeysT, data: any) {
+  public addData(tableName: LocalStorageKeysT, data: UserT) {
     const localData = JSON.parse(
       localStorage.getItem(LocalStorageKeys[tableName]) || '[]',
     );

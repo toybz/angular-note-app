@@ -8,7 +8,7 @@ import { LocalStorageKeys } from '../../utils/constants';
 })
 export class TagsService {
   private _allTags: WritableSignal<Tag[]> = signal([]);
-  readonly allTags: WritableSignal<Tag[]> = signal([]);
+  public readonly allTags: WritableSignal<Tag[]> = signal([]);
 
   constructor() {
     const savedTags = localStorage.getItem(LocalStorageKeys.tags);
@@ -26,7 +26,7 @@ export class TagsService {
     );
   }
 
-  addTag(tagName: string) {
+  public addTag(tagName: string) {
     const newTag: Tag = {
       tagId: generateUniqueId(),
       tagName: tagName,

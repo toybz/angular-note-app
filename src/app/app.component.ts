@@ -10,9 +10,9 @@ import { AuthService } from './services/auth/auth.service';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  authService = inject(AuthService);
-  router = inject(Router);
-  isUserLoggedIn = this.authService.user;
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  public isUserLoggedIn = this.authService.user;
 
   constructor() {
     if (!this.isUserLoggedIn()) {

@@ -1,8 +1,7 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Note } from '../../models/note';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { NotesComponent } from '../notes/notes.component';
-import { NoteService } from '../../services/note/note.service';
 
 @Component({
   selector: 'app-notes-container',
@@ -12,6 +11,5 @@ import { NoteService } from '../../services/note/note.service';
   styleUrl: './notes-container.component.scss',
 })
 export class NotesContainerComponent {
-  noteService = inject(NoteService);
-  @Input('notes') notes: Note[] = [];
+  @Input() public notes: Note[] = [];
 }

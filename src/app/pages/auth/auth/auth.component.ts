@@ -32,27 +32,26 @@ export class AuthComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
+  public authType: string | undefined;
+  public signUpForm = this.formBuilder.group({
+    username: ['', Validators.required],
+    password: ['', [Validators.required, Validators.min(6)]],
+  });
 
-  authType: string | undefined;
-
-  @Input() set authenticationType(authType: string) {
+  @Input()
+  private set authenticationType(authType: string) {
     this.authType = authType;
   }
 
   constructor() {}
 
-  signUpForm = this.formBuilder.group({
-    username: ['', Validators.required],
-    password: ['', [Validators.required, Validators.min(6)]],
-  });
-
-  signUp() {
+  public signUp() {
     this.authService.signUpNewUser(this.signUpForm.value as UserT);
     this.snackBar.open('User sign up successfully', 'Close');
     this.router.navigateByUrl('notes');
   }
 
-  login() {
+  public login() {
     const userSearch = this.authService.isUserExist(
       this.signUpForm.value as UserT,
     );

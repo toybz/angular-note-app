@@ -10,15 +10,15 @@ export class AuthService {
   private storageService = inject(StorageService);
   private router = inject(Router);
 
-  user: WritableSignal<UserT | null> = signal(null);
+  public user: WritableSignal<UserT | null> = signal(null);
 
   constructor() {}
 
-  signUpNewUser(user: UserT) {
+  public signUpNewUser(user: UserT) {
     this.storageService.addData('users', user);
   }
 
-  isUserExist(user: UserT) {
+  public isUserExist(user: UserT) {
     const users = this.storageService.getData('users') as UserT[];
     const userSearch = users.find((data) => {
       return (
@@ -32,7 +32,7 @@ export class AuthService {
     return userSearch;
   }
 
-  logOut() {
+  public logOut() {
     this.user.set(null);
     this.router.navigateByUrl('auth/login');
   }

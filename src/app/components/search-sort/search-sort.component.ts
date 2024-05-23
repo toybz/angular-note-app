@@ -23,20 +23,20 @@ import { SortType } from '../../models/searchSort';
   styleUrl: './search-sort.component.scss',
 })
 export class SearchSortComponent {
-  formBuilder = inject(FormBuilder);
-  search = output<string>();
-  sort = output<SortType>();
-  sortValue: SortType = 'asc';
+  private formBuilder = inject(FormBuilder);
+  public search = output<string>();
+  public sort = output<SortType>();
+  public sortValue: SortType = 'asc';
 
-  searchForm = this.formBuilder.group({
+  public searchForm = this.formBuilder.group({
     searchQuery: [''],
   });
 
-  searchNote() {
+  public searchNote() {
     this.search.emit(this.searchForm.value.searchQuery!);
   }
 
-  sortNote() {
+  public sortNote() {
     this.sortValue = this.sortValue === 'asc' ? 'desc' : 'asc';
     this.sort.emit(this.sortValue);
   }

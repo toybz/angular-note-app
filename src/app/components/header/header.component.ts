@@ -31,17 +31,17 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  authService = inject(AuthService);
+  private authService = inject(AuthService);
+  public isUserLoggedIn = this.authService.user;
 
-  @Input() showBackButton = true;
-  @Input() title = 'Cocus Note';
-  isUserLoggedIn = this.authService.user;
+  @Input() public showBackButton = true;
+  @Input() public title = 'Cocus Note';
 
-  goBack() {
+  public goBack() {
     history.back();
   }
 
-  logOut() {
+  public logOut() {
     this.authService.logOut();
   }
 }

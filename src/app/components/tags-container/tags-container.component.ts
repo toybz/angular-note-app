@@ -28,26 +28,27 @@ import { TagsService } from '../../services/tags/tags.service';
 export class TagsContainerComponent {
   private formBuilder = inject(FormBuilder);
   private tagsService = inject(TagsService);
-  allTags = this.tagsService.allTags;
-  @Input() editMode: boolean = false;
-  @Input() selectedTags: string[] = [];
+  public onTagsSelectionChange = output<string[]>();
 
-  onTagsSelectionChange = output<string[]>();
-  showAddTagContainer = false;
-  newTagForm = this.formBuilder.group({
+  public allTags = this.tagsService.allTags;
+  public showAddTagContainer = false;
+  public newTagForm = this.formBuilder.group({
     tagName: ['', Validators.required],
   });
 
-  toggleShowAddTagContainer() {
+  @Input() public editMode: boolean = false;
+  @Input() public selectedTags: string[] = [];
+
+  public toggleShowAddTagContainer() {
     this.showAddTagContainer = !this.showAddTagContainer;
   }
 
-  addTag() {
+  public addTag() {
     const tagName = this.newTagForm.value.tagName || '';
     this.tagsService.addTag(tagName);
   }
 
-  toggleSelectedTag(tagId: string) {
+  public toggleSelectedTag(tagId: string) {
     const tagItem = this.selectedTags.find((item) => item === tagId);
     let tagSelection;
     if (tagItem) {
@@ -58,7 +59,7 @@ export class TagsContainerComponent {
     this.onTagsSelectionChange.emit(tagSelection);
   }
 
-  isTagSelected(tagId: string) {
+  public isTagSelected(tagId: string) {
     return this.selectedTags.find((item) => item === tagId);
   }
 }

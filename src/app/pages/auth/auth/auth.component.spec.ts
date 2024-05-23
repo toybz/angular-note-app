@@ -19,11 +19,11 @@ describe('AuthComponent', () => {
 
   beforeEach(async () => {
     // service spy objects
-    let authServiceSpy = jasmine.createSpyObj('AuthService', [
+    const authServiceSpy = jasmine.createSpyObj('AuthService', [
       'signUpNewUser',
       'isUserExist',
     ]);
-    let snackBarSpy = jasmine.createSpyObj('MatSnackBar', ['open']);
+    const snackBarSpy = jasmine.createSpyObj('MatSnackBar', ['open']);
 
     await TestBed.configureTestingModule({
       imports: [AuthComponent, BrowserAnimationsModule],
@@ -52,7 +52,7 @@ describe('AuthComponent', () => {
   describe('#constructor', () => {
     it('should set the authType to sign-up', () => {
       const authType = 'sign-up';
-      component.authenticationType = authType;
+      component['authenticationType'] = authType;
       harness.detectChanges();
       const formSubmitButton = fixture.querySelector(
         'button[data-test-id="form-submit-button"]',
@@ -68,7 +68,7 @@ describe('AuthComponent', () => {
 
     it('should set the authType to login', () => {
       const authType = 'login';
-      component.authenticationType = authType;
+      component['authenticationType'] = authType;
       harness.detectChanges();
       const formSubmitButton = fixture.querySelector(
         'button[data-test-id="form-submit-button"]',

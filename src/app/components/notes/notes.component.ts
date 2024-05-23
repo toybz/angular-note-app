@@ -26,5 +26,5 @@ import { TruncateTextPipe } from '../../pipes/truncate-text/truncate-text.pipe';
   styleUrl: './notes.component.scss',
 })
 export class NotesComponent {
-  @Input({ required: true }) note!: Note;
+  @Input({ required: true }) public note!: Note;
 }

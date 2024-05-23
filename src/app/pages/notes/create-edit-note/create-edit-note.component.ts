@@ -44,11 +44,11 @@ import { NoteForm } from '../../../models/note';
 export class CreateEditNoteComponent {
   private formBuilder = inject(FormBuilder);
   private noteService = inject(NoteService);
-  inEditMode = false;
-  editNoteId: string | null = null;
+  public inEditMode = false;
+  public editNoteId: string | null = null;
 
   @Input()
-  set id(noteId: string) {
+  private set id(noteId: string) {
     if (this.noteService.getNote(noteId)) {
       this.inEditMode = true;
       this.editNoteId = noteId;
@@ -62,19 +62,19 @@ export class CreateEditNoteComponent {
     }
   }
 
-  noteForm = this.formBuilder.group({
+  public noteForm = this.formBuilder.group({
     title: ['', Validators.required],
     content: ['', Validators.required],
     tags: new FormControl<string[]>([]),
   });
 
-  tags = [...tags];
+  public tags = [...tags];
 
-  get selectedTags() {
+  public get selectedTags() {
     return this.noteForm.value.tags || [];
   }
 
-  createNote() {
+  public createNote() {
     const noteFormValue = this.noteForm.value as NoteForm;
     if (!this.inEditMode) {
       this.noteService.addNote(noteFormValue);
@@ -88,7 +88,7 @@ export class CreateEditNoteComponent {
     }
   }
 
-  tagsSelectionChangeHandler(event: string[]) {
+  public tagsSelectionChangeHandler(event: string[]) {
     this.noteForm.patchValue({
       tags: event,
     });

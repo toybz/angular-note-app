@@ -35,9 +35,10 @@ import { RouterLink } from '@angular/router';
 })
 export class ViewNoteComponent {
   private noteService = inject(NoteService);
-  note!: Note;
+  public note!: Note;
+
   @Input()
-  set id(noteId: string) {
+  private set id(noteId: string) {
     if (this.noteService.getNote(noteId)) {
       this.note = this.noteService.getNote(noteId)!;
     } else {
@@ -45,12 +46,13 @@ export class ViewNoteComponent {
     }
   }
 
-  get selectedTags() {
+  public get selectedTags() {
     return this.note.tags || [];
   }
-  tags: Tag[] = [...tags];
 
-  deleteNote(noteId: string) {
+  public tags: Tag[] = [...tags];
+
+  public deleteNote(noteId: string) {
     this.noteService.deleteNote(noteId);
   }
 }

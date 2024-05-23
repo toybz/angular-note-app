@@ -37,15 +37,15 @@ import { BehaviorSubject, combineLatest, map } from 'rxjs';
 export class AllNotesComponent {
   private noteService = inject(NoteService);
 
-  tags: Tag[] = [...tags];
-  searchQuery = new BehaviorSubject('');
-  sortType = new BehaviorSubject('');
+  public tags: Tag[] = [...tags];
+  public searchQuery = new BehaviorSubject('');
+  public sortType = new BehaviorSubject('');
 
-  notes = combineLatest(
+  public notes = combineLatest([
     this.noteService.notes,
     this.searchQuery,
     this.sortType,
-  ).pipe(
+  ]).pipe(
     map(([notes, searchQuery, sortType]) => {
       let displayedNote = notes;
       if (searchQuery) {
@@ -68,11 +68,11 @@ export class AllNotesComponent {
 
   constructor() {}
 
-  searchNotes(event: string) {
+  public searchNotes(event: string) {
     this.searchQuery.next(event);
   }
 
-  sortNotes(event: SortType) {
+  public sortNotes(event: SortType) {
     this.sortType.next(event);
   }
 }
