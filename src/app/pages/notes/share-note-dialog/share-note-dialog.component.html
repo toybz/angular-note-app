@@ -4,7 +4,6 @@
       <mat-card-title>Share note</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>note id {{ data.noteId }}</p>
       <mat-list>
         @for (item of renderedList(); track item.user.id) {
           <mat-list-item>
