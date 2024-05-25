@@ -1,3 +1,5 @@
+import { UserT } from './user';
+
 export interface Note {
   readonly id: string;
   title: string;
@@ -11,4 +13,11 @@ export interface NoteForm {
   title: string;
   content: string;
   tags?: string[];
+}
+
+export interface SharedNoteT {
+  id: string;
+  noteId: string;
+  sharedBy: UserT;
+  sharedTo: UserT;
 }

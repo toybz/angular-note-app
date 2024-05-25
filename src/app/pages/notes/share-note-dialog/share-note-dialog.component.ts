@@ -1,4 +1,4 @@
-import { Component, inject, Inject } from '@angular/core';
+import { Component, computed, inject, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   MatCard,
@@ -10,7 +10,7 @@ import { UsersService } from '../../../services/users/users.service';
 import { AuthService } from '../../../services/auth/auth.service';
 import { MatList, MatListItem } from '@angular/material/list';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
-import { NoteService } from '../../../services/note/note.service';
+import { ShareNoteService } from '../../../services/share/share-note.service';
 
 @Component({
   selector: 'app-share-note-dialog',
@@ -30,23 +30,35 @@ import { NoteService } from '../../../services/note/note.service';
 export class ShareNoteDialogComponent {
   private usersService = inject(UsersService);
   private authService = inject(AuthService);
-  private noteService = inject(NoteService);
-  public usersInSharedList = [
-    {
-      sharedTo: { username: 'user1' },
-      sharedBy: { username: 'user2' },
-    },
-    {
-      sharedTo: { username: 'user3' },
-      sharedBy: { username: 'user2' },
-    },
-  ]; //this.noteService.getSharedList()
+  private shareNoteService = inject(ShareNoteService);
+  public sharedList = this.shareNoteService.getSharedWithUsers(
+    this.data.noteId,
+  );
   public signedInUser = this.authService.user();
   public users = this.usersService
     .getUsers()
     .filter((user) => user.username !== this.signedInUser?.username);
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { noteId: string }) {
-    console.log('users', this.users);
+  public renderedList = computed(() => {
+    return this.users.map((user) => {
+      return {
+        user: { ...user },
+        shareDetail: this.isNoteSharedToUser(user.id!),
+      };
+    });
+  });
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { noteId: string }) {}
+
+  public shareNote(userId: string, noteId: string) {
+    this.shareNoteService.shareNote(userId, noteId);
+  }
+
+  public undoShare(shareId: string) {
+    this.shareNoteService.undoShare(shareId);
+  }
+
+  public isNoteSharedToUser(userId: string) {
+    return this.sharedList().find((item) => item.sharedTo.id === userId);
   }
 }

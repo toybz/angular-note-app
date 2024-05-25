@@ -6,13 +6,23 @@
     <mat-card-content>
       <p>note id {{ data.noteId }}</p>
       <mat-list>
-        @for (user of users; track user.username) {
+        @for (item of renderedList(); track item.user.id) {
           <mat-list-item>
             <p>
               <span>
-                {{ user.username }}
+                {{ item.user?.username }}
               </span>
-              <mat-slide-toggle></mat-slide-toggle>
+              @if (item.shareDetail) {
+                <mat-slide-toggle
+                  [checked]="true"
+                  (toggleChange)="undoShare(item.shareDetail.id)"
+                ></mat-slide-toggle>
+              } @else {
+                <mat-slide-toggle
+                  [checked]="false"
+                  (toggleChange)="shareNote(item.user.id!, data.noteId)"
+                ></mat-slide-toggle>
+              }
             </p>
           </mat-list-item>
         }

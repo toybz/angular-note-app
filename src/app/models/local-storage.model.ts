@@ -1,1 +1,1 @@
-export type LocalStorageKeysT = 'notes' | 'tags' | 'users';
+export type LocalStorageKeysT = 'notes' | 'tags' | 'users' | 'sharedNotes';
