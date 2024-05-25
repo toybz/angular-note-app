@@ -20,7 +20,7 @@ export class AuthService {
       ...user,
       id: generateUniqueId(),
     };
-    this.storageService.addData('users', newUser);
+    this.storageService.addData('users', newUser as never);
   }
 
   public isUserExist(user: UserT) {
