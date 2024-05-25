@@ -1,10 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Note, NoteForm } from '../../models/note';
 import { generateUniqueId } from '../../utils/uniqueIdGenerator';
-import { LocalStorageKeys } from '../../utils/constants';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,21 +12,15 @@ import { Router } from '@angular/router';
 export class NoteService {
   private snackBar = inject(MatSnackBar);
   private router = inject(Router);
+  private storageService = inject(StorageService);
 
   private _notes = new BehaviorSubject<Note[]>([]);
-  public notes = this._notes.asObservable().pipe(
-    tap((notes) => {
-      //save to localStorage
-      localStorage.setItem(LocalStorageKeys.notes, JSON.stringify(notes));
-    }),
-  );
+  public notes = this._notes.asObservable();
 
   constructor() {
-    if (localStorage.getItem(LocalStorageKeys.notes)) {
-      const savedNotes = JSON.parse(
-        localStorage.getItem(LocalStorageKeys.notes)!,
-      );
-      this._notes.next(savedNotes);
+    const localNotes = this.storageService.getData('notes');
+    if (localNotes) {
+      this._notes.next(localNotes);
     }
   }
 
@@ -42,9 +36,9 @@ export class NoteService {
       dateCreated: new Date(),
       tags: note.tags,
     };
+    this.storageService.addData('notes', newNote as never);
     const existingNotes = this._notes.value;
     this._notes.next([...existingNotes, newNote]);
-
     this.snackBar.open('Note added successfully', 'Close');
   }
 
@@ -56,12 +50,14 @@ export class NoteService {
     noteToEdit.lastModified = new Date();
     noteToEdit.tags = note.tags;
 
+    this.storageService.editData('notes', noteToEdit!);
     this._notes.next(allNotes);
 
     this.snackBar.open('Note updated successfully', 'Close');
   }
 
   public deleteNote(noteId: string) {
+    this.storageService.deleteData('notes', noteId);
     const unDeletedNotes = this._notes.value.filter(
       (note) => note.id !== noteId,
     );
