@@ -13,4 +13,8 @@ export class UsersService {
   public getUsers(): UserT[] {
     return this.storageService.getData('users') || ([] as UserT[]);
   }
+
+  public getUser(userId: string) {
+    return this.storageService.getDatum('users', userId) as UserT;
+  }
 }
