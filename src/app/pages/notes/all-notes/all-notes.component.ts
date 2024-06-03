@@ -35,11 +35,10 @@ import { BehaviorSubject, combineLatest, map } from 'rxjs';
   styleUrl: './all-notes.component.scss',
 })
 export class AllNotesComponent {
-  private noteService = inject(NoteService);
-
   public tags: Tag[] = [...tags];
   public searchQuery = new BehaviorSubject('');
   public sortType = new BehaviorSubject('');
+  private noteService = inject(NoteService);
 
   public notes = combineLatest([
     this.noteService.notes,
