@@ -10,7 +10,6 @@ describe('AuthService', () => {
   let service: AuthService;
   let storageService: jasmine.SpyObj<StorageService>;
   let routerService: jasmine.SpyObj<Router>;
-
   let signedInUser: UserT;
 
   beforeEach(() => {
