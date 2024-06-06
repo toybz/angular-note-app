@@ -8,5 +8,5 @@ pre-commit:
       glob: "*.{css, scss}"
       run: npx stylelint {staged_files}
     prettier:
-      glob: "*"
+      glob: "*.{html,css, scss, js,ts,jsx,tsx, json, yml, md}"
       run: npx prettier {staged_files} --write
