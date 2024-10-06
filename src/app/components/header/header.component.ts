@@ -35,7 +35,7 @@ export class HeaderComponent {
   public isUserLoggedIn = this.authService.user;
 
   @Input() public showBackButton = true;
-  @Input() public title = 'Cocus Note';
+  @Input() public title = 'Angular Note App';
 
   public goBack() {
     history.back();
