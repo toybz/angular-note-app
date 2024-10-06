@@ -28,5 +28,5 @@ jobs:
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: dist/note-application
+        publish_dir: docs
         enable_jekyll: true
